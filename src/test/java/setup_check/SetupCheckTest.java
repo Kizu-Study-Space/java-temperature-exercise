@@ -1,7 +1,7 @@
+package setup_check;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import setup_check.SetupCheck;
 
 public class SetupCheckTest {
 
