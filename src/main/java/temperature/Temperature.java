@@ -1,14 +1,22 @@
 package temperature;
 
+import java.util.ArrayList;
+
 public class Temperature {
     private double celsius;
+    private ArrayList<Element> elements;
 
     public Temperature () {
-        this.celsius = (double) 20;
+        this(20);
     }
 
     public Temperature (final double celsius) {
         this.celsius = celsius;
+
+        this.elements = new ArrayList();
+        this.elements.add(new Element("N", "Stickstoff", 63.15, 77.36));
+        this.elements.add(new Element("Hg", "Quecksilber", 234.32, 629.88));
+        this.elements.add(new Element("Pb", "Blei", 600.61, 2022));
     }
 
     public double getCelsius(){
@@ -49,6 +57,11 @@ public class Temperature {
 
     public void coolDownByFahrenheit(float coolDownBy){
         this.coolDownByCelsius(celsiusStepsFromFahrenheitSteps(coolDownBy));
+    }
+
+    public String stateOfMatterOf(String elementString) {
+        Element element = this.elements.stream().filter(elementFromList -> elementString.equals(elementFromList.getShortName())).findFirst().orElse(null);
+        return element.getStateOfMatter(this.getKelvin());
     }
 
     private double celsiusStepsFromFahrenheitSteps(double fahrenheit) {

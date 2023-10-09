@@ -73,4 +73,17 @@ public class TemperatureTest {
         temperature.coolDownByFahrenheit(40);
         assertEquals( -80, temperature.getFahrenheit());
     }
+
+    @Test
+    public void stateOfMatterOf() {
+        Temperature temperature = new Temperature(20);
+        assertEquals("gas", temperature.stateOfMatterOf("N"));
+        assertEquals("liquid", temperature.stateOfMatterOf("Hg"));
+        assertEquals("solid", temperature.stateOfMatterOf("Pb"));
+
+        temperature = new Temperature(1000);
+        assertEquals("gas", temperature.stateOfMatterOf("N"));
+        assertEquals("gas", temperature.stateOfMatterOf("Hg"));
+        assertEquals("liquid", temperature.stateOfMatterOf("Pb"));
+    }
 }
