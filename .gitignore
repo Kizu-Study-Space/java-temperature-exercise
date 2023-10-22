@@ -1,5 +1,9 @@
 .gradle
+gradle
+.idea
 bin
+gradlew
+gradlew.bat
 **/build/
 !src/**/build/
 
