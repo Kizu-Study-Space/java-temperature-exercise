@@ -1,7 +1,7 @@
+package ch.hslu.oop.temperature;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import temperature.Temperature;
 
 public class TemperatureTest {
 

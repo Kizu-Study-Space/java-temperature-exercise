@@ -1,4 +1,4 @@
-package temperature;
+package ch.hslu.oop.temperature;
 
 public class Temperature {
     private double celsius;
