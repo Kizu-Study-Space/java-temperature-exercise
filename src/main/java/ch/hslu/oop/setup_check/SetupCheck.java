@@ -1,4 +1,4 @@
-package setup_check;
+package ch.hslu.oop.setup_check;
 
 public class SetupCheck {
     public int check() {
