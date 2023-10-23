@@ -14,9 +14,9 @@ public class Temperature {
         this.celsius = celsius;
 
         this.elements = new ArrayList();
-        this.elements.add(new Element("N", "Stickstoff", 63.15, 77.36));
-        this.elements.add(new Element("Hg", "Quecksilber", 234.32, 629.88));
-        this.elements.add(new Element("Pb", "Blei", 600.61, 2022));
+        this.elements.add(new N());
+        this.elements.add(new Hg());
+        this.elements.add(new Pb());
     }
 
     public double getCelsius(){

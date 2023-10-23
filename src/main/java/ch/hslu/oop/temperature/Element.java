@@ -1,10 +1,10 @@
 package ch.hslu.oop.temperature;
 
-public class Element{
-  private double kelvinMeltingPoint;
-  private double kelvinBoilingPoint;
-  private String name;
-  private String shortName;
+public abstract class Element {
+  private final double kelvinMeltingPoint;
+  private final double kelvinBoilingPoint;
+  private final String name;
+  private final String shortName;
   
   public Element (final String shortName, final String name, final double kelvinMeltingPoint, final double kelvinBoilingPoint) {
     this.kelvinMeltingPoint = kelvinMeltingPoint;
