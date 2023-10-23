@@ -1,4 +1,4 @@
-package setup_check;
+package ch.hslu.oop.setup_check;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;

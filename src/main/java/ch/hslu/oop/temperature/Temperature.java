@@ -1,4 +1,4 @@
-package temperature;
+package ch.hslu.oop.temperature;
 
 import java.util.ArrayList;
 
