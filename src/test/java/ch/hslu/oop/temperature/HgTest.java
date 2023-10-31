@@ -25,4 +25,10 @@ public class HgTest {
         assertEquals("liquid", element.getStateOfMatter(630.19));
         assertEquals("gas", element.getStateOfMatter(630.2));
     }
+
+    @Test
+    public void testToString() {
+        Element element = new Hg();
+        assertEquals("GIFTIG\nHg: melting at 234.32K, boiling at 630.2K.", element.toString());
+    }
 }
