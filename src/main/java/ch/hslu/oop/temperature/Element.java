@@ -19,6 +19,11 @@ public abstract class Element {
     return "gas";
   }
 
+  @Override
+  public String toString() {
+    return this.shortName + ": melting at " + this.kelvinMeltingPoint + "K, boiling at " + this.kelvinBoilingPoint + "K.";
+  }
+
   String getName() {
     return this.name;
   }

@@ -24,4 +24,10 @@ public class NTest {
         assertEquals("liquid", element.getStateOfMatter(77.35));
         assertEquals("gas", element.getStateOfMatter(77.36));
     }
+
+    @Test
+    public void testToString() {
+        Element element = new N();
+        assertEquals("N: melting at 63.15K, boiling at 77.36K.", element.toString());
+    }
 }

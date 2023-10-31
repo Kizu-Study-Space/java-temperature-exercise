@@ -25,4 +25,10 @@ public class PbTest {
         assertEquals("liquid", element.getStateOfMatter(2021.99));
         assertEquals("gas", element.getStateOfMatter(2022));
     }
+
+    @Test
+    public void testToString() {
+        Element element = new Pb();
+        assertEquals("Pb: melting at 600.61K, boiling at 2022.0K.", element.toString());
+    }
 }
