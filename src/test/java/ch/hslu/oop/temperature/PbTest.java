@@ -6,25 +6,25 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PbTest {
     @Test
     public void testGetAtomicNumber() {
-        Element pb = new Pb();
+        final Element pb = new Pb();
         assertEquals(82, pb.getAtomicNumber());
     }
 
     @Test
     public void testGetName() {
-        Element pb = new Pb();
+        final Element pb = new Pb();
         assertEquals("Blei", pb.getName());
     }
 
     @Test
     public void testGetShortName() {
-        Element pb = new Pb();
+        final Element pb = new Pb();
         assertEquals("Pb", pb.getShortName());
     }
 
     @Test
     public void testGetStateOfMatter() {
-        Element pb = new Pb();
+        final Element pb = new Pb();
         assertEquals("solid", pb.getStateOfMatter(600.60));
         assertEquals("liquid", pb.getStateOfMatter(600.61));
         assertEquals("liquid", pb.getStateOfMatter(2021.99));
@@ -33,16 +33,16 @@ public class PbTest {
 
     @Test
     public void testToString() {
-        Element pb = new Pb();
+        final Element pb = new Pb();
         assertEquals("Pb: melting at 600.61K, boiling at 2022.0K.", pb.toString());
     }
 
     @Test
     public void testEquals() {
-        Element pb1 = new Pb();
-        Element pb2 = new Pb();
-        Element pb3 = new Pb();
-        Element n = new N();
+        final Element pb1 = new Pb();
+        final Element pb2 = new Pb();
+        final Element pb3 = new Pb();
+        final Element n = new N();
 
         // Reflexivity
         assertEquals(pb1, pb1);
@@ -66,10 +66,10 @@ public class PbTest {
 
     @Test
     public void testHashCode() {
-        Element pb1 = new Pb();
-        Element pb2 = new Pb();
-        Element pb3 = new Pb();
-        Element n = new N();
+        final Element pb1 = new Pb();
+        final Element pb2 = new Pb();
+        final Element pb3 = new Pb();
+        final Element n = new N();
 
         // Reflexivity
         assertEquals(pb1.hashCode(), pb1.hashCode());
@@ -91,10 +91,10 @@ public class PbTest {
 
     @Test
     public void testCompareTo() {
-        Element pb1 = new Pb();
-        Element pb2 = new Pb();
-        Element n = new N();
-        Element hg = new Hg();
+        final Element pb1 = new Pb();
+        final Element pb2 = new Pb();
+        final Element n = new N();
+        final Element hg = new Hg();
 
         assertEquals(0, pb1.compareTo(pb2));
         assertTrue(pb1.compareTo(n) > 0);

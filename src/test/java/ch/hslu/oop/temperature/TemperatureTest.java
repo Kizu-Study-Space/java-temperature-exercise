@@ -9,33 +9,33 @@ public class TemperatureTest {
 
     @Test
     public void testGetCelsius() {
-        Temperature temperature = new Temperature(5);
+        final Temperature temperature = new Temperature(5);
         assertEquals(5, temperature.getCelsius());
-        temperature = new Temperature();
-        assertEquals(20, temperature.getCelsius());
+        final Temperature defaultTemperature = new Temperature();
+        assertEquals(20, defaultTemperature.getCelsius());
     }
 
     @Test
     public void testGetFahrenheit() {
-        Temperature temperature = new Temperature(-40);
+        final Temperature temperature = new Temperature(-40);
         assertEquals(-40, temperature.getFahrenheit());
     }
 
     @Test
     public void testGetKelvin() {
-        Temperature temperature = new Temperature(20);
+        final Temperature temperature = new Temperature(20);
         assertEquals(293.15, temperature.getKelvin());
     }
 
     @Test
     public void testWarmUpByCelsius() {
-        Temperature temperature = new Temperature(20);
+        final Temperature temperature = new Temperature(20);
         assertEquals(25, temperature.warmUpByCelsius(5).getCelsius());
     }
 
     @Test
     public void testCoolDownByCelsius() {
-        Temperature temperature = new Temperature(20);
+        final Temperature temperature = new Temperature(20);
         assertEquals(15, temperature.coolDownByCelsius(5).getCelsius());
     }
 
@@ -47,30 +47,30 @@ public class TemperatureTest {
 
     @Test
     public void testCoolDownByKelvin() {
-        Temperature temperature = new Temperature(20);
+        final Temperature temperature = new Temperature(20);
         assertEquals(290.15, temperature.coolDownByKelvin(3).getKelvin());
     }
 
     @Test
     public void testWarmUpByFahrenheit() {
-        Temperature temperature = new Temperature(-40);
+        final Temperature temperature = new Temperature(-40);
         assertEquals( 0, temperature.warmUpByFahrenheit(40).getFahrenheit());
     }
 
     @Test
     public void testCoolDownByFahrenheit() {
-        Temperature temperature = new Temperature(-40);
+        final Temperature temperature = new Temperature(-40);
         assertEquals( -80, temperature.coolDownByFahrenheit(40).getFahrenheit());
     }
 
     @Test
     public void testStateOfMatterOf() {
-        Temperature temperature = new Temperature(20);
-        assertEquals("gas", temperature.stateOfMatterOf("N"));
-        assertEquals("liquid", temperature.stateOfMatterOf("Hg"));
-        assertEquals("solid", temperature.stateOfMatterOf("Pb"));
+        final Temperature defaultTemperature = new Temperature();
+        assertEquals("gas", defaultTemperature.stateOfMatterOf("N"));
+        assertEquals("liquid", defaultTemperature.stateOfMatterOf("Hg"));
+        assertEquals("solid", defaultTemperature.stateOfMatterOf("Pb"));
 
-        temperature = new Temperature(1000);
+        final Temperature temperature = new Temperature(1000);
         assertEquals("gas", temperature.stateOfMatterOf("N"));
         assertEquals("gas", temperature.stateOfMatterOf("Hg"));
         assertEquals("liquid", temperature.stateOfMatterOf("Pb"));
@@ -83,9 +83,9 @@ public class TemperatureTest {
 
     @Test
     public void testCompareTo() {
-        Temperature temperature1 = new Temperature(53);
-        Temperature temperature2 = new Temperature(28);
-        Temperature temperature3 = new Temperature(28);
+        final Temperature temperature1 = new Temperature(53);
+        final Temperature temperature2 = new Temperature(28);
+        final Temperature temperature3 = new Temperature(28);
 
         assertEquals(0, temperature2.compareTo(temperature3));
         assertTrue(temperature1.compareTo(temperature2) > 0);

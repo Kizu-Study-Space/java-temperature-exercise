@@ -6,25 +6,25 @@ import static org.junit.jupiter.api.Assertions.*;
 public class HgTest {
     @Test
     public void testGetAtomicNumber() {
-        Element hg = new Hg();
+        final Element hg = new Hg();
         assertEquals(80, hg.getAtomicNumber());
     }
 
     @Test
     public void testGetName() {
-        Element hg = new Hg();
+        final Element hg = new Hg();
         assertEquals("Quecksilber", hg.getName());
     }
 
     @Test
     public void testGetShortName() {
-        Element hg = new Hg();
+        final Element hg = new Hg();
         assertEquals("Hg", hg.getShortName());
     }
 
     @Test
     public void testGetStateOfMatter() {
-        Element hg = new Hg();
+        final Element hg = new Hg();
         assertEquals("solid", hg.getStateOfMatter(234.31));
         assertEquals("liquid", hg.getStateOfMatter(234.32));
         assertEquals("liquid", hg.getStateOfMatter(630.19));
@@ -33,16 +33,16 @@ public class HgTest {
 
     @Test
     public void testToString() {
-        Element hg = new Hg();
+        final Element hg = new Hg();
         assertEquals("GIFTIG\nHg: melting at 234.32K, boiling at 630.2K.", hg.toString());
     }
 
     @Test
     public void testEquals() {
-        Element hg1 = new Hg();
-        Element hg2 = new Hg();
-        Element hg3 = new Hg();
-        Element n = new N();
+        final Element hg1 = new Hg();
+        final Element hg2 = new Hg();
+        final Element hg3 = new Hg();
+        final Element n = new N();
 
         // Reflexivity
         assertEquals(hg1, hg1);
@@ -66,10 +66,10 @@ public class HgTest {
 
     @Test
     public void testHashCode() {
-        Element hg1 = new Hg();
-        Element hg2 = new Hg();
-        Element hg3 = new Hg();
-        Element n = new N();
+        final Element hg1 = new Hg();
+        final Element hg2 = new Hg();
+        final Element hg3 = new Hg();
+        final Element n = new N();
 
         // Reflexivity
         assertEquals(hg1.hashCode(), hg1.hashCode());
@@ -91,10 +91,10 @@ public class HgTest {
 
     @Test
     public void testCompareTo() {
-        Element hg1 = new Hg();
-        Element hg2 = new Hg();
-        Element n = new N();
-        Element pb = new Pb();
+        final Element hg1 = new Hg();
+        final Element hg2 = new Hg();
+        final Element n = new N();
+        final Element pb = new Pb();
 
         assertEquals(0, hg1.compareTo(hg2));
         assertTrue(hg1.compareTo(n) > 0);

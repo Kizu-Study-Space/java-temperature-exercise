@@ -6,25 +6,25 @@ import static org.junit.jupiter.api.Assertions.*;
 public class NTest {
     @Test
     public void testGetAtomicNumber() {
-        Element n = new N();
+        final Element n = new N();
         assertEquals(7, n.getAtomicNumber());
     }
 
     @Test
     public void testGetName() {
-        Element n = new N();
+        final Element n = new N();
         assertEquals("Stickstoff", n.getName());
     }
 
     @Test
     public void testGetShortName() {
-        Element n = new N();
+        final Element n = new N();
         assertEquals("N", n.getShortName());
     }
 
     @Test
     public void testGetStateOfMatter() {
-        Element n = new N();
+        final Element n = new N();
         assertEquals("solid", n.getStateOfMatter(63.14));
         assertEquals("liquid", n.getStateOfMatter(63.15));
         assertEquals("liquid", n.getStateOfMatter(77.35));
@@ -33,16 +33,16 @@ public class NTest {
 
     @Test
     public void testToString() {
-        Element n = new N();
+        final Element n = new N();
         assertEquals("N: melting at 63.15K, boiling at 77.36K.", n.toString());
     }
 
     @Test
     public void testEquals() {
-        Element n1 = new N();
-        Element n2 = new N();
-        Element n3 = new N();
-        Element hg = new Hg();
+        final Element n1 = new N();
+        final Element n2 = new N();
+        final Element n3 = new N();
+        final Element hg = new Hg();
 
         // Reflexivity
         assertEquals(n1, n1);
@@ -66,10 +66,10 @@ public class NTest {
 
     @Test
     public void testHashCode() {
-        Element n1 = new N();
-        Element n2 = new N();
-        Element n3 = new N();
-        Element hg = new Hg();
+        final Element n1 = new N();
+        final Element n2 = new N();
+        final Element n3 = new N();
+        final Element hg = new Hg();
 
         // Reflexivity
         assertEquals(n1.hashCode(), n1.hashCode());
@@ -91,10 +91,10 @@ public class NTest {
 
     @Test
     public void testCompareTo() {
-        Element n1 = new N();
-        Element n2 = new N();
-        Element hg = new Hg();
-        Element pb = new Pb();
+        final Element n1 = new N();
+        final Element n2 = new N();
+        final Element hg = new Hg();
+        final Element pb = new Pb();
 
         assertEquals(0, n1.compareTo(n2));
         assertTrue(n1.compareTo(hg) < 0);
