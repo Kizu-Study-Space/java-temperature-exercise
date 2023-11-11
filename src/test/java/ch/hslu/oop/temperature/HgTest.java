@@ -1,6 +1,5 @@
 package ch.hslu.oop.temperature;
 
-import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

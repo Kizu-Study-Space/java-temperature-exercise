@@ -7,6 +7,9 @@ import java.util.Objects;
 public final class Temperature implements Comparable<Temperature> {
     private final double celsius;
     private final List<Element> elements = new ArrayList<>();
+    private static final double KELVIN_OFFSET = 273.15;
+    private static final int FAHRENHEIT_OFFSET = 32;
+    private static final double FAHRENHEIT_FACTOR = 1.8;
 
     public Temperature () {
         this(20);
@@ -25,11 +28,11 @@ public final class Temperature implements Comparable<Temperature> {
     }
 
     public double getKelvin() {
-        return this.celsius + (double) 273.15;
+        return this.celsius + KELVIN_OFFSET;
     }
 
     public double getFahrenheit() {
-        return (celsius * (double) 1.8) + (double) 32;
+        return (celsius * FAHRENHEIT_FACTOR) + FAHRENHEIT_OFFSET;
     }
 
     public Temperature warmUpByCelsius(double warmUpBy) {
@@ -64,19 +67,19 @@ public final class Temperature implements Comparable<Temperature> {
     }
 
     private double celsiusStepsFromFahrenheitSteps(double fahrenheit) {
-        return fahrenheit / (double) 1.8;
+        return fahrenheit / FAHRENHEIT_FACTOR;
     }
 
     @Override
-    public final int hashCode() {
+    public int hashCode() {
         return Objects.hash(this.celsius);
     }
 
     @Override
-    public final boolean equals (Object object) {
+    public boolean equals (Object object) {
         if (this == object) return true;
         if (object instanceof Temperature temperature) {
-            return ((Double) this.celsius).equals((Double) temperature.celsius);
+            return ((Double) this.celsius).equals(temperature.celsius);
         }
         return false;
     }

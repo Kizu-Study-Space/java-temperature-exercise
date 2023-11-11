@@ -17,49 +17,49 @@ public class TemperatureTest {
 
     @Test
     public void testGetFahrenheit() {
-        Temperature temperature = new Temperature((double) -40);
-        assertEquals((double) -40, temperature.getFahrenheit());
+        Temperature temperature = new Temperature(-40);
+        assertEquals(-40, temperature.getFahrenheit());
     }
 
     @Test
     public void testGetKelvin() {
-        Temperature temperature = new Temperature((double) 20);
-        assertEquals( 293.15, temperature.getKelvin());
+        Temperature temperature = new Temperature(20);
+        assertEquals(293.15, temperature.getKelvin());
     }
 
     @Test
     public void testWarmUpByCelsius() {
-        Temperature temperature = new Temperature((double) 20);
-        assertEquals( 25, temperature.warmUpByCelsius(5).getCelsius());
+        Temperature temperature = new Temperature(20);
+        assertEquals(25, temperature.warmUpByCelsius(5).getCelsius());
     }
 
     @Test
     public void testCoolDownByCelsius() {
-        Temperature temperature = new Temperature((double) 20);
-        assertEquals( 15, temperature.coolDownByCelsius(5).getCelsius());
+        Temperature temperature = new Temperature(20);
+        assertEquals(15, temperature.coolDownByCelsius(5).getCelsius());
     }
 
     @Test
     public void testWarmUpByKelvin() {
-        Temperature temperature = new Temperature((double) 20);
-        assertEquals( 298.15, temperature.warmUpByKelvin(5).getKelvin());
+        Temperature temperature = new Temperature(20);
+        assertEquals(298.15, temperature.warmUpByKelvin(5).getKelvin());
     }
 
     @Test
     public void testCoolDownByKelvin() {
-        Temperature temperature = new Temperature((double) 20);
-        assertEquals( 290.15, temperature.coolDownByKelvin(3).getKelvin());
+        Temperature temperature = new Temperature(20);
+        assertEquals(290.15, temperature.coolDownByKelvin(3).getKelvin());
     }
 
     @Test
     public void testWarmUpByFahrenheit() {
-        Temperature temperature = new Temperature((double) -40);
+        Temperature temperature = new Temperature(-40);
         assertEquals( 0, temperature.warmUpByFahrenheit(40).getFahrenheit());
     }
 
     @Test
     public void testCoolDownByFahrenheit() {
-        Temperature temperature = new Temperature((double) -40);
+        Temperature temperature = new Temperature(-40);
         assertEquals( -80, temperature.coolDownByFahrenheit(40).getFahrenheit());
     }
 
