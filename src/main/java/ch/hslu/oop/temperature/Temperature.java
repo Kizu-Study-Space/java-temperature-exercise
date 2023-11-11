@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Temperature {
+public final class Temperature implements Comparable<Temperature> {
     private final double celsius;
     private final List<Element> elements = new ArrayList<>();
 
@@ -79,5 +79,10 @@ public class Temperature {
             return ((Double) this.celsius).equals((Double) temperature.celsius);
         }
         return false;
+    }
+
+    @Override
+    public int compareTo(Temperature temperature) {
+        return Double.compare(this.celsius, temperature.celsius);
     }
 }
