@@ -91,4 +91,18 @@ public class TemperatureTest {
         assertTrue(temperature1.compareTo(temperature2) > 0);
         assertTrue(temperature2.compareTo(temperature1) < 0);
     }
+
+    @Test
+    public void testFahrenheitFromCelsius() {
+        assertEquals(-40, Temperature.fahrenheitFromCelsius(-40));
+        assertEquals(32, Temperature.fahrenheitFromCelsius(0));
+        assertEquals(-459.67, Temperature.fahrenheitFromCelsius(-273.15),0.0000000000001);
+    }
+
+    @Test
+    public void testCelsiusFromFahrenheit() {
+        assertEquals(-40, Temperature.celsiusFromFahrenheit(-40));
+        assertEquals(0, Temperature.celsiusFromFahrenheit(32));
+        assertEquals(-273.15, Temperature.celsiusFromFahrenheit(-459.67),0.0000000000001);
+    }
 }

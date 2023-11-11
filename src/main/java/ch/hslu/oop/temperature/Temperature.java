@@ -32,16 +32,14 @@ public final class Temperature implements Comparable<Temperature> {
     }
 
     public double getFahrenheit() {
-        return (celsius * FAHRENHEIT_FACTOR) + FAHRENHEIT_OFFSET;
+        return fahrenheitFromCelsius(this.celsius);
     }
 
     public Temperature warmUpByCelsius(double warmUpBy) {
-        //this.celsius += warmUpBy;
         return new Temperature(this.celsius + warmUpBy);
     }
 
     public Temperature coolDownByCelsius(double coolDownBy) {
-        //this.celsius -= coolDownBy;
         return new Temperature(this.celsius - coolDownBy);
     }
 
@@ -54,7 +52,7 @@ public final class Temperature implements Comparable<Temperature> {
     }
 
     public Temperature warmUpByFahrenheit(float warmUpBy){
-        return this.warmUpByCelsius(this.celsiusStepsFromFahrenheitSteps(warmUpBy));
+        return this.warmUpByCelsius(celsiusStepsFromFahrenheitSteps(warmUpBy));
     }
 
     public Temperature coolDownByFahrenheit(float coolDownBy){
@@ -66,7 +64,15 @@ public final class Temperature implements Comparable<Temperature> {
         return element.getStateOfMatter(this.getKelvin());
     }
 
-    private double celsiusStepsFromFahrenheitSteps(double fahrenheit) {
+    public static double fahrenheitFromCelsius(double celsius) {
+        return celsius * FAHRENHEIT_FACTOR + FAHRENHEIT_OFFSET;
+    }
+
+    public static double celsiusFromFahrenheit(double fahrenheit) {
+        return celsiusStepsFromFahrenheitSteps(fahrenheit - FAHRENHEIT_OFFSET);
+    }
+
+    private static double celsiusStepsFromFahrenheitSteps(double fahrenheit) {
         return fahrenheit / FAHRENHEIT_FACTOR;
     }
 
