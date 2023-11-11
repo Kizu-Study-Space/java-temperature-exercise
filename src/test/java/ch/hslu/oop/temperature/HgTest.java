@@ -6,30 +6,36 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class HgTest {
     @Test
-    public void getName() {
-        Element element = new Hg();
-        assertEquals("Quecksilber", element.getName());
+    public void testGetAtomicNumber() {
+        Element hg = new Hg();
+        assertEquals(80, hg.getAtomicNumber());
     }
 
     @Test
-    public void getShortName() {
-        Element element = new Hg();
-        assertEquals("Hg", element.getShortName());
+    public void testGetName() {
+        Element hg = new Hg();
+        assertEquals("Quecksilber", hg.getName());
     }
 
     @Test
-    public void getStateOfMatter() {
-        Element element = new Hg();
-        assertEquals("solid", element.getStateOfMatter(234.31));
-        assertEquals("liquid", element.getStateOfMatter(234.32));
-        assertEquals("liquid", element.getStateOfMatter(630.19));
-        assertEquals("gas", element.getStateOfMatter(630.2));
+    public void testGetShortName() {
+        Element hg = new Hg();
+        assertEquals("Hg", hg.getShortName());
+    }
+
+    @Test
+    public void testGetStateOfMatter() {
+        Element hg = new Hg();
+        assertEquals("solid", hg.getStateOfMatter(234.31));
+        assertEquals("liquid", hg.getStateOfMatter(234.32));
+        assertEquals("liquid", hg.getStateOfMatter(630.19));
+        assertEquals("gas", hg.getStateOfMatter(630.2));
     }
 
     @Test
     public void testToString() {
-        Element element = new Hg();
-        assertEquals("GIFTIG\nHg: melting at 234.32K, boiling at 630.2K.", element.toString());
+        Element hg = new Hg();
+        assertEquals("GIFTIG\nHg: melting at 234.32K, boiling at 630.2K.", hg.toString());
     }
 
     @Test
@@ -82,5 +88,17 @@ public class HgTest {
         assertEquals(hg1.hashCode(), hg2.hashCode());
         // Comparison with different types
         assertNotEquals(hg1.hashCode(), "hello".hashCode());
+    }
+
+    @Test
+    public void testCompareTo() {
+        Element hg1 = new Hg();
+        Element hg2 = new Hg();
+        Element n = new N();
+        Element pb = new Pb();
+
+        assertEquals(0, hg1.compareTo(hg2));
+        assertTrue(hg1.compareTo(n) > 0);
+        assertTrue(hg1.compareTo(pb) < 0);
     }
 }

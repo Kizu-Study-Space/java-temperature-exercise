@@ -6,30 +6,36 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PbTest {
     @Test
-    public void getName() {
-        Element element = new Pb();
-        assertEquals("Blei", element.getName());
+    public void testGetAtomicNumber() {
+        Element pb = new Pb();
+        assertEquals(82, pb.getAtomicNumber());
     }
 
     @Test
-    public void getShortName() {
-        Element element = new Pb();
-        assertEquals("Pb", element.getShortName());
+    public void testGetName() {
+        Element pb = new Pb();
+        assertEquals("Blei", pb.getName());
     }
 
     @Test
-    public void getStateOfMatter() {
-        Element element = new Pb();
-        assertEquals("solid", element.getStateOfMatter(600.60));
-        assertEquals("liquid", element.getStateOfMatter(600.61));
-        assertEquals("liquid", element.getStateOfMatter(2021.99));
-        assertEquals("gas", element.getStateOfMatter(2022));
+    public void testGetShortName() {
+        Element pb = new Pb();
+        assertEquals("Pb", pb.getShortName());
+    }
+
+    @Test
+    public void testGetStateOfMatter() {
+        Element pb = new Pb();
+        assertEquals("solid", pb.getStateOfMatter(600.60));
+        assertEquals("liquid", pb.getStateOfMatter(600.61));
+        assertEquals("liquid", pb.getStateOfMatter(2021.99));
+        assertEquals("gas", pb.getStateOfMatter(2022));
     }
 
     @Test
     public void testToString() {
-        Element element = new Pb();
-        assertEquals("Pb: melting at 600.61K, boiling at 2022.0K.", element.toString());
+        Element pb = new Pb();
+        assertEquals("Pb: melting at 600.61K, boiling at 2022.0K.", pb.toString());
     }
 
     @Test
@@ -82,5 +88,17 @@ public class PbTest {
         assertEquals(pb1.hashCode(), pb2.hashCode());
         // Comparison with different types
         assertNotEquals(pb1.hashCode(), "hello".hashCode());
+    }
+
+    @Test
+    public void testCompareTo() {
+        Element pb1 = new Pb();
+        Element pb2 = new Pb();
+        Element n = new N();
+        Element hg = new Hg();
+
+        assertEquals(0, pb1.compareTo(pb2));
+        assertTrue(pb1.compareTo(n) > 0);
+        assertTrue(pb1.compareTo(hg) > 0);
     }
 }
