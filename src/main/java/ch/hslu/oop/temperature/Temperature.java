@@ -1,10 +1,12 @@
 package ch.hslu.oop.temperature;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Temperature {
-    private double celsius;
-    private ArrayList<Element> elements;
+    private final double celsius;
+    private final List<Element> elements = new ArrayList<>();
 
     public Temperature () {
         this(20);
@@ -13,7 +15,6 @@ public class Temperature {
     public Temperature (final double celsius) {
         this.celsius = celsius;
 
-        this.elements = new ArrayList();
         this.elements.add(new N());
         this.elements.add(new Hg());
         this.elements.add(new Pb());
@@ -21,10 +22,6 @@ public class Temperature {
 
     public double getCelsius(){
         return this.celsius;
-    }
-
-    public void setCelsius(final double celsius){
-        this.celsius = celsius;
     }
 
     public double getKelvin() {
@@ -35,28 +32,30 @@ public class Temperature {
         return (celsius * (double) 1.8) + (double) 32;
     }
 
-    public void warmUpByCelsius(double warmUpBy) {
-        this.celsius += warmUpBy;
+    public Temperature warmUpByCelsius(double warmUpBy) {
+        //this.celsius += warmUpBy;
+        return new Temperature(this.celsius + warmUpBy);
     }
 
-    public void coolDownByCelsius(double coolDownBy) {
-        this.celsius -= coolDownBy;
+    public Temperature coolDownByCelsius(double coolDownBy) {
+        //this.celsius -= coolDownBy;
+        return new Temperature(this.celsius - coolDownBy);
     }
 
-    public void warmUpByKelvin(double warmUpBy) {
-        this.warmUpByCelsius(warmUpBy);
+    public Temperature warmUpByKelvin(double warmUpBy) {
+        return this.warmUpByCelsius(warmUpBy);
     }
 
-    public void coolDownByKelvin(double coolDownBy) {
-        this.coolDownByCelsius(coolDownBy);
+    public Temperature coolDownByKelvin(double coolDownBy) {
+        return this.coolDownByCelsius(coolDownBy);
     }
 
-    public void warmUpByFahrenheit(float warmUpBy){
-        this.warmUpByCelsius(this.celsiusStepsFromFahrenheitSteps(warmUpBy));
+    public Temperature warmUpByFahrenheit(float warmUpBy){
+        return this.warmUpByCelsius(this.celsiusStepsFromFahrenheitSteps(warmUpBy));
     }
 
-    public void coolDownByFahrenheit(float coolDownBy){
-        this.coolDownByCelsius(celsiusStepsFromFahrenheitSteps(coolDownBy));
+    public Temperature coolDownByFahrenheit(float coolDownBy){
+        return this.coolDownByCelsius(celsiusStepsFromFahrenheitSteps(coolDownBy));
     }
 
     public String stateOfMatterOf(String elementString) {
@@ -66,5 +65,19 @@ public class Temperature {
 
     private double celsiusStepsFromFahrenheitSteps(double fahrenheit) {
         return fahrenheit / (double) 1.8;
+    }
+
+    @Override
+    public final int hashCode() {
+        return Objects.hash(this.celsius);
+    }
+
+    @Override
+    public final boolean equals (Object object) {
+        if (this == object) return true;
+        if (object instanceof Temperature temperature) {
+            return ((Double) this.celsius).equals((Double) temperature.celsius);
+        }
+        return false;
     }
 }

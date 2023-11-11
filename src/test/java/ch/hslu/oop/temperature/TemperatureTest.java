@@ -1,5 +1,6 @@
 package ch.hslu.oop.temperature;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -11,13 +12,6 @@ public class TemperatureTest {
         assertEquals(5, temperature.getCelsius());
         temperature = new Temperature();
         assertEquals(20, temperature.getCelsius());
-    }
-
-    @Test
-    public void setCelsius() {
-        Temperature temperature = new Temperature();
-        temperature.setCelsius((double) 3);
-        assertEquals(3, temperature.getCelsius());
     }
 
     @Test
@@ -35,43 +29,37 @@ public class TemperatureTest {
     @Test
     public void warmUpByCelsius() {
         Temperature temperature = new Temperature((double) 20);
-        temperature.warmUpByCelsius(5);
-        assertEquals( 25, temperature.getCelsius());
+        assertEquals( 25, temperature.warmUpByCelsius(5).getCelsius());
     }
 
     @Test
     public void coolDownByCelsius() {
         Temperature temperature = new Temperature((double) 20);
-        temperature.coolDownByCelsius(5);
-        assertEquals( 15, temperature.getCelsius());
+        assertEquals( 15, temperature.coolDownByCelsius(5).getCelsius());
     }
 
     @Test
     public void warmUpByKelvin() {
         Temperature temperature = new Temperature((double) 20);
-        temperature.warmUpByKelvin(5);
-        assertEquals( 298.15, temperature.getKelvin());
+        assertEquals( 298.15, temperature.warmUpByKelvin(5).getKelvin());
     }
 
     @Test
     public void coolDownByKelvin() {
         Temperature temperature = new Temperature((double) 20);
-        temperature.coolDownByKelvin(3);
-        assertEquals( 290.15, temperature.getKelvin());
+        assertEquals( 290.15, temperature.coolDownByKelvin(3).getKelvin());
     }
 
     @Test
     public void warmUpByFahrenheit() {
         Temperature temperature = new Temperature((double) -40);
-        temperature.warmUpByFahrenheit(40);
-        assertEquals( 0, temperature.getFahrenheit());
+        assertEquals( 0, temperature.warmUpByFahrenheit(40).getFahrenheit());
     }
 
     @Test
     public void coolDownByFahrenheit() {
         Temperature temperature = new Temperature((double) -40);
-        temperature.coolDownByFahrenheit(40);
-        assertEquals( -80, temperature.getFahrenheit());
+        assertEquals( -80, temperature.coolDownByFahrenheit(40).getFahrenheit());
     }
 
     @Test
@@ -85,5 +73,10 @@ public class TemperatureTest {
         assertEquals("gas", temperature.stateOfMatterOf("N"));
         assertEquals("gas", temperature.stateOfMatterOf("Hg"));
         assertEquals("liquid", temperature.stateOfMatterOf("Pb"));
+    }
+
+    @Test
+    public void testEquals() {
+        EqualsVerifier.forClass(Temperature.class).withOnlyTheseFields("celsius").verify();
     }
 }
