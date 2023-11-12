@@ -1,7 +1,10 @@
 package ch.hslu.oop.temperature;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.NoSuchElementException;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TemperatureHistoryTest {
 
@@ -47,8 +50,9 @@ public class TemperatureHistoryTest {
     }
 
     @Test
-    public void testHighestTemperature() {
+    public void testHighestTemperature() throws Exception {
         final TemperatureHistory temperatureHistory = new TemperatureHistory();
+        assertThrows(EmptyTemperatureHistoryException.class, temperatureHistory::highestTemperature);
 
         final Temperature temperature0 = new Temperature(12);
         final Temperature temperature1 = new Temperature(23);
@@ -61,8 +65,9 @@ public class TemperatureHistoryTest {
     }
 
     @Test
-    public void testLowestTemperature() {
+    public void testLowestTemperature() throws Exception {
         final TemperatureHistory temperatureHistory = new TemperatureHistory();
+        assertThrows(EmptyTemperatureHistoryException.class, temperatureHistory::lowestTemperature);
 
         final Temperature temperature0 = new Temperature(17);
         final Temperature temperature1 = new Temperature(23);
@@ -77,6 +82,7 @@ public class TemperatureHistoryTest {
     @Test
     public void testAverageTemperature() {
         final TemperatureHistory temperatureHistory = new TemperatureHistory();
+        assertThrows(NoSuchElementException.class, temperatureHistory::averageTemperature);
 
         final Temperature temperature0 = new Temperature(17);
         final Temperature temperature1 = new Temperature(23);

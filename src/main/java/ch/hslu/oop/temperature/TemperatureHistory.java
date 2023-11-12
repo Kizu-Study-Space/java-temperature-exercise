@@ -1,8 +1,6 @@
 package ch.hslu.oop.temperature;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public final class TemperatureHistory {
     private final List<Temperature> temperatures = new ArrayList<>();
@@ -19,15 +17,17 @@ public final class TemperatureHistory {
         temperatures.clear();
     }
 
-    public Temperature highestTemperature() {
+    public Temperature highestTemperature() throws EmptyTemperatureHistoryException {
+        if (temperatures.isEmpty()) throw new EmptyTemperatureHistoryException();
         return Collections.max(temperatures);
     }
 
-    public Temperature lowestTemperature() {
+    public Temperature lowestTemperature() throws EmptyTemperatureHistoryException {
+        if (temperatures.isEmpty()) throw new EmptyTemperatureHistoryException();
         return Collections.min(temperatures);
     }
 
     public Temperature averageTemperature() {
-        return new Temperature(temperatures.stream().mapToDouble(Temperature::getCelsius).average().orElse(0.0));
+        return new Temperature(temperatures.stream().mapToDouble(Temperature::getCelsius).average().orElseThrow());
     }
 }
