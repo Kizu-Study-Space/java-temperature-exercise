@@ -9,7 +9,7 @@ public class TemperatureTest {
 
     @Test
     public void testGetCelsius() {
-        final Temperature temperature = new Temperature(5);
+        final Temperature temperature = Temperature.createWithCelsius(5);
         assertEquals(5, temperature.getCelsius());
         final Temperature defaultTemperature = new Temperature();
         assertEquals(20, defaultTemperature.getCelsius());
@@ -17,68 +17,68 @@ public class TemperatureTest {
 
     @Test
     public void testGetFahrenheit() {
-        final Temperature temperature = new Temperature(-40);
+        final Temperature temperature = Temperature.createWithCelsius(-40);
         assertEquals(-40, temperature.getFahrenheit());
     }
 
     @Test
     public void testGetKelvin() {
-        final Temperature temperature = new Temperature(20);
+        final Temperature temperature = Temperature.createWithCelsius(20);
         assertEquals(293.15, temperature.getKelvin());
     }
 
     @Test
     public void testWarmUpByCelsius() {
-        final Temperature temperature = new Temperature(20);
+        final Temperature temperature = Temperature.createWithCelsius(20);
         assertEquals(25, temperature.warmUpByCelsius(5).getCelsius());
     }
 
     @Test
     public void testCoolDownByCelsius() {
-        final Temperature temperature = new Temperature(20);
+        final Temperature temperature = Temperature.createWithCelsius(20);
         assertEquals(15, temperature.coolDownByCelsius(5).getCelsius());
     }
 
     @Test
     public void testWarmUpByKelvin() {
-        Temperature temperature = new Temperature(20);
+        Temperature temperature = Temperature.createWithCelsius(20);
         assertEquals(298.15, temperature.warmUpByKelvin(5).getKelvin());
     }
 
     @Test
     public void testCoolDownByKelvin() {
-        final Temperature temperature = new Temperature(20);
+        final Temperature temperature = Temperature.createWithCelsius(20);
         assertEquals(290.15, temperature.coolDownByKelvin(3).getKelvin());
     }
 
     @Test
     public void testWarmUpByFahrenheit() {
-        final Temperature temperature = new Temperature(-40);
-        assertEquals( 0, temperature.warmUpByFahrenheit(40).getFahrenheit());
+        final Temperature temperature = Temperature.createWithCelsius(-40);
+        assertEquals( 0, temperature.warmUpByFahrenheit(40).getFahrenheit(), 0.00000000001);
     }
 
     @Test
     public void testCoolDownByFahrenheit() {
-        final Temperature temperature = new Temperature(-40);
-        assertEquals( -80, temperature.coolDownByFahrenheit(40).getFahrenheit());
+        final Temperature temperature = Temperature.createWithCelsius(-40);
+        assertEquals( -80, temperature.coolDownByFahrenheit(40).getFahrenheit(), 0.00000000001);
     }
 
     @Test
     public void testStateOfMatterOf() {
         final Temperature defaultTemperature = new Temperature();
-        assertEquals("gas", defaultTemperature.stateOfMatterOf("N"));
-        assertEquals("liquid", defaultTemperature.stateOfMatterOf("Hg"));
-        assertEquals("solid", defaultTemperature.stateOfMatterOf("Pb"));
+        assertEquals("Stickstoff ist gasförmig bei 20.00 Grad Celsius", defaultTemperature.stateOfMatterOf("N"));
+        assertEquals("Quecksilber ist flüssig bei 20.00 Grad Celsius", defaultTemperature.stateOfMatterOf("Hg"));
+        assertEquals("Blei ist fest bei 20.00 Grad Celsius", defaultTemperature.stateOfMatterOf("Pb"));
 
-        final Temperature temperature = new Temperature(1000);
-        assertEquals("gas", temperature.stateOfMatterOf("N"));
-        assertEquals("gas", temperature.stateOfMatterOf("Hg"));
-        assertEquals("liquid", temperature.stateOfMatterOf("Pb"));
+        final Temperature temperature = Temperature.createWithCelsius(1000);
+        assertEquals("Stickstoff ist gasförmig bei 1000.00 Grad Celsius", temperature.stateOfMatterOf("N"));
+        assertEquals("Quecksilber ist gasförmig bei 1000.00 Grad Celsius", temperature.stateOfMatterOf("Hg"));
+        assertEquals("Blei ist flüssig bei 1000.00 Grad Celsius", temperature.stateOfMatterOf("Pb"));
     }
 
     @Test
     public void testEquals() {
-        EqualsVerifier.forClass(Temperature.class).withOnlyTheseFields("celsius").verify();
+        EqualsVerifier.forClass(Temperature.class).withOnlyTheseFields("kelvin").verify();
     }
 
     @Test

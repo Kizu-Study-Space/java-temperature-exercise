@@ -25,10 +25,10 @@ public class HgTest {
     @Test
     public void testGetStateOfMatter() {
         final Element hg = new Hg();
-        assertEquals("solid", hg.getStateOfMatter(234.31));
-        assertEquals("liquid", hg.getStateOfMatter(234.32));
-        assertEquals("liquid", hg.getStateOfMatter(630.19));
-        assertEquals("gas", hg.getStateOfMatter(630.2));
+        assertEquals("Quecksilber ist fest bei -38.84 Grad Celsius", hg.getStateOfMatter(new Temperature(234.31)));
+        assertEquals("Quecksilber ist flüssig bei -38.83 Grad Celsius", hg.getStateOfMatter(new Temperature(234.32)));
+        assertEquals("Quecksilber ist flüssig bei 357.04 Grad Celsius", hg.getStateOfMatter(new Temperature(630.19)));
+        assertEquals("Quecksilber ist gasförmig bei 357.05 Grad Celsius", hg.getStateOfMatter(new Temperature(630.2)));
     }
 
     @Test

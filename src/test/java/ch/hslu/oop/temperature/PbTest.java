@@ -25,10 +25,10 @@ public class PbTest {
     @Test
     public void testGetStateOfMatter() {
         final Element pb = new Pb();
-        assertEquals("solid", pb.getStateOfMatter(600.60));
-        assertEquals("liquid", pb.getStateOfMatter(600.61));
-        assertEquals("liquid", pb.getStateOfMatter(2021.99));
-        assertEquals("gas", pb.getStateOfMatter(2022));
+        assertEquals("Blei ist fest bei 327.45 Grad Celsius", pb.getStateOfMatter(new Temperature(600.60)));
+        assertEquals("Blei ist flüssig bei 327.46 Grad Celsius", pb.getStateOfMatter(new Temperature(600.61)));
+        assertEquals("Blei ist flüssig bei 1748.84 Grad Celsius", pb.getStateOfMatter(new Temperature(2021.99)));
+        assertEquals("Blei ist gasförmig bei 1748.85 Grad Celsius", pb.getStateOfMatter(new Temperature(2022)));
     }
 
     @Test

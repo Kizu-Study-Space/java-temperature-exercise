@@ -17,10 +17,10 @@ public abstract class Element implements Comparable<Element> {
     this.shortName = shortName;
   }
 
-  protected final StateOfMatter getStateOfMatter(final double currentKelvinTemperature) {
-    if (currentKelvinTemperature < kelvinMeltingPoint) return StateOfMatter.SOLID;
-    if (currentKelvinTemperature < kelvinBoilingPoint) return StateOfMatter.LIQUID;
-    return StateOfMatter.GAS;
+  protected final String getStateOfMatter(final Temperature currentTemperature) {
+    if (currentTemperature.getKelvin() < kelvinMeltingPoint) return StateOfMatter.SOLID.toString(this, currentTemperature);
+    if (currentTemperature.getKelvin() < kelvinBoilingPoint) return StateOfMatter.LIQUID.toString(this, currentTemperature);
+    return StateOfMatter.GAS.toString(this, currentTemperature);
   }
   
   @Override

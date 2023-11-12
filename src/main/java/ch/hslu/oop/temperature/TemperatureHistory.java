@@ -28,6 +28,6 @@ public final class TemperatureHistory {
     }
 
     public Temperature averageTemperature() {
-        return new Temperature(temperatures.stream().mapToDouble(Temperature::getCelsius).average().orElseThrow());
+        return new Temperature(temperatures.stream().mapToDouble(Temperature::getKelvin).average().orElseThrow());
     }
 }

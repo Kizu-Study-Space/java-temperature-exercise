@@ -84,9 +84,9 @@ public class TemperatureHistoryTest {
         final TemperatureHistory temperatureHistory = new TemperatureHistory();
         assertThrows(NoSuchElementException.class, temperatureHistory::averageTemperature);
 
-        final Temperature temperature0 = new Temperature(17);
-        final Temperature temperature1 = new Temperature(23);
-        final Temperature temperature2 = new Temperature(14);
+        final Temperature temperature0 = Temperature.createWithCelsius(17);
+        final Temperature temperature1 = Temperature.createWithCelsius(23);
+        final Temperature temperature2 = Temperature.createWithCelsius(14);
         temperatureHistory.add(temperature0);
         temperatureHistory.add(temperature1);
         temperatureHistory.add(temperature2);

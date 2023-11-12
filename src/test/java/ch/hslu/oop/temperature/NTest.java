@@ -25,10 +25,10 @@ public class NTest {
     @Test
     public void testGetStateOfMatter() {
         final Element n = new N();
-        assertEquals("solid", n.getStateOfMatter(63.14));
-        assertEquals("liquid", n.getStateOfMatter(63.15));
-        assertEquals("liquid", n.getStateOfMatter(77.35));
-        assertEquals("gas", n.getStateOfMatter(77.36));
+        assertEquals("Stickstoff ist fest bei -210.01 Grad Celsius", n.getStateOfMatter(new Temperature(63.14)));
+        assertEquals("Stickstoff ist flüssig bei -210.00 Grad Celsius", n.getStateOfMatter(new Temperature(63.15)));
+        assertEquals("Stickstoff ist flüssig bei -195.80 Grad Celsius", n.getStateOfMatter(new Temperature(77.35)));
+        assertEquals("Stickstoff ist gasförmig bei -195.79 Grad Celsius", n.getStateOfMatter(new Temperature(77.36)));
     }
 
     @Test

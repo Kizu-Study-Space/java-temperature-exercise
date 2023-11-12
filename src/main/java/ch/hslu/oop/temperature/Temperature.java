@@ -5,42 +5,46 @@ import java.util.List;
 import java.util.Objects;
 
 public final class Temperature implements Comparable<Temperature> {
-    private final double celsius;
+    private final double kelvin;
     private final List<Element> elements = new ArrayList<>();
     private static final double KELVIN_OFFSET = 273.15;
     private static final int FAHRENHEIT_OFFSET = 32;
     private static final double FAHRENHEIT_FACTOR = 1.8;
 
     public Temperature () {
-        this(20);
+        this(20 + KELVIN_OFFSET);
     }
 
-    public Temperature (final double celsius) {
-        this.celsius = celsius;
+    public Temperature (final double kelvin) {
+        this.kelvin = kelvin;
 
         this.elements.add(new N());
         this.elements.add(new Hg());
         this.elements.add(new Pb());
     }
 
+    public static Temperature createWithCelsius (final double celsius) {
+        return new Temperature(celsius + KELVIN_OFFSET);
+    }
+
     public double getCelsius(){
-        return this.celsius;
+        return this.kelvin - KELVIN_OFFSET;
     }
 
     public double getKelvin() {
-        return this.celsius + KELVIN_OFFSET;
+        return this.kelvin;
     }
 
     public double getFahrenheit() {
-        return fahrenheitFromCelsius(this.celsius);
+        return fahrenheitFromCelsius(this.getCelsius());
     }
 
     public Temperature warmUpByCelsius(double warmUpBy) {
-        return new Temperature(this.celsius + warmUpBy);
+        return new Temperature(this.getKelvin() + warmUpBy);
     }
 
     public Temperature coolDownByCelsius(double coolDownBy) {
-        return new Temperature(this.celsius - coolDownBy);
+        return new Temperature(this.getKelvin() - coolDownBy);
     }
 
     public Temperature warmUpByKelvin(double warmUpBy) {
@@ -61,7 +65,7 @@ public final class Temperature implements Comparable<Temperature> {
 
     public String stateOfMatterOf(String elementString) {
         Element element = this.elements.stream().filter(elementFromList -> elementString.equals(elementFromList.getShortName())).findFirst().orElse(null);
-        return element.getStateOfMatter(this.getKelvin());
+        return element.getStateOfMatter(this);
     }
 
     public static double fahrenheitFromCelsius(double celsius) {
@@ -78,20 +82,20 @@ public final class Temperature implements Comparable<Temperature> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.celsius);
+        return Objects.hash(this.getKelvin());
     }
 
     @Override
     public boolean equals (Object object) {
         if (this == object) return true;
         if (object instanceof Temperature temperature) {
-            return ((Double) this.celsius).equals(temperature.celsius);
+            return ((Double) this.getKelvin()).equals(temperature.getKelvin());
         }
         return false;
     }
 
     @Override
     public int compareTo(Temperature temperature) {
-        return Double.compare(this.celsius, temperature.celsius);
+        return Double.compare(this.getKelvin(), temperature.getKelvin());
     }
 }
