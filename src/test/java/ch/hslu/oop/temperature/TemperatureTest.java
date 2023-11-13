@@ -64,19 +64,6 @@ public class TemperatureTest {
     }
 
     @Test
-    public void testStateOfMatterOf() {
-        final Temperature defaultTemperature = new Temperature();
-        assertEquals("Stickstoff ist gasförmig bei 20.00 Grad Celsius", defaultTemperature.stateOfMatterOf("N"));
-        assertEquals("Quecksilber ist flüssig bei 20.00 Grad Celsius", defaultTemperature.stateOfMatterOf("Hg"));
-        assertEquals("Blei ist fest bei 20.00 Grad Celsius", defaultTemperature.stateOfMatterOf("Pb"));
-
-        final Temperature temperature = Temperature.createWithCelsius(1000);
-        assertEquals("Stickstoff ist gasförmig bei 1000.00 Grad Celsius", temperature.stateOfMatterOf("N"));
-        assertEquals("Quecksilber ist gasförmig bei 1000.00 Grad Celsius", temperature.stateOfMatterOf("Hg"));
-        assertEquals("Blei ist flüssig bei 1000.00 Grad Celsius", temperature.stateOfMatterOf("Pb"));
-    }
-
-    @Test
     public void testEquals() {
         EqualsVerifier.forClass(Temperature.class).withOnlyTheseFields("kelvin").verify();
     }

@@ -6,7 +6,6 @@ import java.util.Objects;
 
 public final class Temperature implements Comparable<Temperature> {
     private final double kelvin;
-    private final List<Element> elements = new ArrayList<>();
     private static final double KELVIN_OFFSET = 273.15;
     private static final int FAHRENHEIT_OFFSET = 32;
     private static final double FAHRENHEIT_FACTOR = 1.8;
@@ -17,10 +16,6 @@ public final class Temperature implements Comparable<Temperature> {
 
     public Temperature (final double kelvin) {
         this.kelvin = kelvin;
-
-        this.elements.add(new N());
-        this.elements.add(new Hg());
-        this.elements.add(new Pb());
     }
 
     public static Temperature createWithCelsius (final double celsius) {
@@ -61,11 +56,6 @@ public final class Temperature implements Comparable<Temperature> {
 
     public Temperature coolDownByFahrenheit(float coolDownBy){
         return this.coolDownByCelsius(celsiusStepsFromFahrenheitSteps(coolDownBy));
-    }
-
-    public String stateOfMatterOf(String elementString) {
-        Element element = this.elements.stream().filter(elementFromList -> elementString.equals(elementFromList.getShortName())).findFirst().orElse(null);
-        return element.getStateOfMatter(this);
     }
 
     public static double fahrenheitFromCelsius(double celsius) {
