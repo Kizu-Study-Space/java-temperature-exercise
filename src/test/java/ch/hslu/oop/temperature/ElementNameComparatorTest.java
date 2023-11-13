@@ -9,10 +9,10 @@ public class ElementNameComparatorTest {
 
     @Test
     public void testCompare() {
-        final Element stickstoff = new N();
-        final Element stickstoff2 = new N();
-        final Element quecksilber = new Hg();
-        final Element blei = new Pb();
+        final Element stickstoff = Element.N;
+        final Element stickstoff2 = Element.N;
+        final Element quecksilber = Element.HG;
+        final Element blei = Element.PB;
 
         final ElementNameComparator comparator = new ElementNameComparator();
         assertEquals(0, comparator.compare(stickstoff, stickstoff2));

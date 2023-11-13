@@ -9,10 +9,10 @@ public class ElementShortNameComparatorTest {
 
     @Test
     public void testCompare() {
-        final Element n1 = new N();
-        final Element n2 = new N();
-        final Element hg = new Hg();
-        final Element pb = new Pb();
+        final Element n1 = Element.N;
+        final Element n2 = Element.N;
+        final Element hg = Element.HG;
+        final Element pb = Element.PB;
 
         final ElementShortNameComparator comparator = new ElementShortNameComparator();
         assertEquals(0, comparator.compare(n1, n2));
