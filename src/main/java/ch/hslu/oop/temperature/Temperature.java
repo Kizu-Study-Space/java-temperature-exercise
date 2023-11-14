@@ -9,9 +9,10 @@ public final class Temperature implements Comparable<Temperature> {
     private static final double KELVIN_OFFSET = 273.15;
     private static final int FAHRENHEIT_OFFSET = 32;
     private static final double FAHRENHEIT_FACTOR = 1.8;
+    private static final double DEFAULT_CELSIUS_TEMPERATURE = 20;
 
     public Temperature () {
-        this(20 + KELVIN_OFFSET);
+        this(DEFAULT_CELSIUS_TEMPERATURE + KELVIN_OFFSET);
     }
 
     public Temperature (final double kelvin) {

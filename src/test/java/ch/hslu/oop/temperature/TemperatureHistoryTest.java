@@ -82,7 +82,7 @@ public class TemperatureHistoryTest {
     @Test
     public void testAverageTemperature() {
         final TemperatureHistory temperatureHistory = new TemperatureHistory();
-        assertThrows(NoSuchElementException.class, temperatureHistory::averageTemperature);
+        assertThrows(EmptyTemperatureHistoryException.class, temperatureHistory::averageTemperature);
 
         final Temperature temperature0 = Temperature.createWithCelsius(17);
         final Temperature temperature1 = Temperature.createWithCelsius(23);

@@ -3,7 +3,7 @@ package ch.hslu.oop.temperature;
 import java.util.*;
 
 public final class TemperatureHistory {
-    private final List<Temperature> temperatures = new ArrayList<>();
+    private final Collection<Temperature> temperatures = new ArrayList<>();
 
     public void add(Temperature temperature) {
         this.temperatures.add(temperature);
@@ -27,7 +27,7 @@ public final class TemperatureHistory {
         return Collections.min(temperatures);
     }
 
-    public Temperature averageTemperature() {
-        return new Temperature(temperatures.stream().mapToDouble(Temperature::getKelvin).average().orElseThrow());
+    public Temperature averageTemperature() throws EmptyTemperatureHistoryException {
+        return new Temperature(temperatures.stream().mapToDouble(Temperature::getKelvin).average().orElseThrow(EmptyTemperatureHistoryException::new));
     }
 }

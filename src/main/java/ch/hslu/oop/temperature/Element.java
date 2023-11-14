@@ -19,10 +19,10 @@ public enum Element implements Comparable<Element> {
     this.shortName = shortName;
   }
 
-  final String getStateOfMatterAt(final Temperature temperature) {
-    if (temperature.compareTo(meltingPoint) < 0) return StateOfMatter.SOLID.toGermanString(this, temperature);
-    if (temperature.compareTo(boilingPoint)  < 0) return StateOfMatter.LIQUID.toGermanString(this, temperature);
-    return StateOfMatter.GAS.toGermanString(this, temperature);
+  final StateOfMatter getStateOfMatterAt(final Temperature temperature) {
+    if (temperature.compareTo(meltingPoint) < 0) return StateOfMatter.SOLID;
+    if (temperature.compareTo(boilingPoint)  < 0) return StateOfMatter.LIQUID;
+    return StateOfMatter.GAS;
   }
 
   @Override

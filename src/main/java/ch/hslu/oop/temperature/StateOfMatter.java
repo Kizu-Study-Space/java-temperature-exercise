@@ -5,7 +5,7 @@ public enum StateOfMatter {
 
     private final String germanName;
 
-    private StateOfMatter(String germanName) {
+    StateOfMatter(String germanName) {
         this.germanName = germanName;
     }
 
