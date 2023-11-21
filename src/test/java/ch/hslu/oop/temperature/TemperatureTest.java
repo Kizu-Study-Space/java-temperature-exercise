@@ -92,4 +92,10 @@ public class TemperatureTest {
         assertEquals(0, Temperature.celsiusFromFahrenheit(32));
         assertEquals(-273.15, Temperature.celsiusFromFahrenheit(-459.67),0.0000000000001);
     }
+
+    @Test
+    public void testToString() {
+        Temperature temperature = new Temperature(579.28983958);
+        assertEquals("The temperature is 579.29 Kelvin", temperature.toString());
+    }
 }

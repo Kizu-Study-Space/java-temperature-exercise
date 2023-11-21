@@ -1,7 +1,5 @@
 package ch.hslu.oop.temperature;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public final class Temperature implements Comparable<Temperature> {
@@ -83,6 +81,11 @@ public final class Temperature implements Comparable<Temperature> {
             return ((Double) this.getKelvin()).equals(temperature.getKelvin());
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("The temperature is %.2f Kelvin", this.kelvin);
     }
 
     @Override
