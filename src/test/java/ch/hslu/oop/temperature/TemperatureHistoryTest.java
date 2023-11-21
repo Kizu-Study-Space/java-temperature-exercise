@@ -54,9 +54,9 @@ public class TemperatureHistoryTest {
         final TemperatureHistory temperatureHistory = new TemperatureHistory();
         assertThrows(EmptyTemperatureHistoryException.class, temperatureHistory::highestTemperature);
 
-        final Temperature temperature0 = new Temperature(12);
-        final Temperature temperature1 = new Temperature(23);
-        final Temperature temperature2 = new Temperature(14);
+        final Temperature temperature0 = Temperature.createWithKelvin(12);
+        final Temperature temperature1 = Temperature.createWithKelvin(23);
+        final Temperature temperature2 = Temperature.createWithKelvin(14);
         temperatureHistory.add(temperature0);
         temperatureHistory.add(temperature1);
         temperatureHistory.add(temperature2);
@@ -69,9 +69,9 @@ public class TemperatureHistoryTest {
         final TemperatureHistory temperatureHistory = new TemperatureHistory();
         assertThrows(EmptyTemperatureHistoryException.class, temperatureHistory::lowestTemperature);
 
-        final Temperature temperature0 = new Temperature(17);
-        final Temperature temperature1 = new Temperature(23);
-        final Temperature temperature2 = new Temperature(14);
+        final Temperature temperature0 = Temperature.createWithKelvin(17);
+        final Temperature temperature1 = Temperature.createWithKelvin(23);
+        final Temperature temperature2 = Temperature.createWithKelvin(14);
         temperatureHistory.add(temperature0);
         temperatureHistory.add(temperature1);
         temperatureHistory.add(temperature2);

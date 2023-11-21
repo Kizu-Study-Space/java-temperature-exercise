@@ -12,8 +12,8 @@ public enum Element implements Comparable<Element> {
   private final String shortName;
   
   Element (final int atomicNumber, final String shortName, final String name, final double meltingPoint, final double boilingPoint) {
-    this.meltingPoint = new Temperature(meltingPoint);
-    this.boilingPoint = new Temperature(boilingPoint);
+    this.meltingPoint = Temperature.createWithKelvin(meltingPoint);
+    this.boilingPoint = Temperature.createWithKelvin(boilingPoint);
     this.atomicNumber = atomicNumber;
     this.name = name;
     this.shortName = shortName;

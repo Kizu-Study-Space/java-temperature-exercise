@@ -28,6 +28,6 @@ public final class TemperatureHistory {
     }
 
     public Temperature averageTemperature() throws EmptyTemperatureHistoryException {
-        return new Temperature(temperatures.stream().mapToDouble(Temperature::getKelvin).average().orElseThrow(EmptyTemperatureHistoryException::new));
+        return Temperature.createWithKelvin(temperatures.stream().mapToDouble(Temperature::getKelvin).average().orElseThrow(EmptyTemperatureHistoryException::new));
     }
 }

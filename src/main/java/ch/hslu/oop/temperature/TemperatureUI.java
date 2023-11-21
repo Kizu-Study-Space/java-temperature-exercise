@@ -11,7 +11,7 @@ public class TemperatureUI {
             input = scanner.nextLine();
             if (input.equals("exit")) break;
             try {
-                Temperature temperature = new Temperature(Double.valueOf(input));
+                Temperature temperature = Temperature.createWithKelvin(Double.valueOf(input));
                 System.out.println(temperature.toString());
             } catch (NumberFormatException exception) {
                 System.out.println("Diese Zahl ist ungültig...");

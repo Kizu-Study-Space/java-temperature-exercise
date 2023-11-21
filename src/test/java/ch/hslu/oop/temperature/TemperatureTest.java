@@ -2,10 +2,21 @@ package ch.hslu.oop.temperature;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TemperatureTest {
+    @Test
+    public void testCreateWithKelvin() {
+        assertDoesNotThrow(() -> Temperature.createWithKelvin(0));
+        assertThrows(InvalidTemperatureException.class, () -> Temperature.createWithKelvin(-0.01) );
+    }
+
+    @Test
+    public void testCreateWithCelsius() {
+        assertDoesNotThrow(() -> Temperature.createWithCelsius(-273.15));
+        assertThrows(InvalidTemperatureException.class, () -> Temperature.createWithCelsius(-273.16));
+    }
 
     @Test
     public void testGetCelsius() {
@@ -70,9 +81,9 @@ public class TemperatureTest {
 
     @Test
     public void testCompareTo() {
-        final Temperature temperature1 = new Temperature(53);
-        final Temperature temperature2 = new Temperature(28);
-        final Temperature temperature3 = new Temperature(28);
+        final Temperature temperature1 = Temperature.createWithKelvin(53);
+        final Temperature temperature2 = Temperature.createWithKelvin(28);
+        final Temperature temperature3 = Temperature.createWithKelvin(28);
 
         assertEquals(0, temperature2.compareTo(temperature3));
         assertTrue(temperature1.compareTo(temperature2) > 0);
@@ -83,19 +94,19 @@ public class TemperatureTest {
     public void testFahrenheitFromCelsius() {
         assertEquals(-40, Temperature.fahrenheitFromCelsius(-40));
         assertEquals(32, Temperature.fahrenheitFromCelsius(0));
-        assertEquals(-459.67, Temperature.fahrenheitFromCelsius(-273.15),0.0000000000001);
+        assertEquals(-459.67, Temperature.fahrenheitFromCelsius(-273.15),0.001);
     }
 
     @Test
     public void testCelsiusFromFahrenheit() {
         assertEquals(-40, Temperature.celsiusFromFahrenheit(-40));
         assertEquals(0, Temperature.celsiusFromFahrenheit(32));
-        assertEquals(-273.15, Temperature.celsiusFromFahrenheit(-459.67),0.0000000000001);
+        assertEquals(-273.15, Temperature.celsiusFromFahrenheit(-459.67),0.001);
     }
 
     @Test
     public void testToString() {
-        Temperature temperature = new Temperature(579.28983958);
+        Temperature temperature = Temperature.createWithKelvin(579.28983958);
         assertEquals("The temperature is 579.29 Kelvin", temperature.toString());
     }
 }

@@ -13,8 +13,13 @@ public final class Temperature implements Comparable<Temperature> {
         this(DEFAULT_CELSIUS_TEMPERATURE + KELVIN_OFFSET);
     }
 
-    public Temperature (final double kelvin) {
+    private Temperature (final double kelvin) {
+        if (kelvin < 0) throw new InvalidTemperatureException();
         this.kelvin = kelvin;
+    }
+
+    public static Temperature createWithKelvin (final double kelvin) {
+        return new Temperature(kelvin);
     }
 
     public static Temperature createWithCelsius (final double celsius) {
