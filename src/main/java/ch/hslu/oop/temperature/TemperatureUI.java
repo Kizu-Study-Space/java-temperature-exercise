@@ -2,13 +2,14 @@ package ch.hslu.oop.temperature;
 
 import java.util.Scanner;
 
-public class TemperatureUI implements MaxTemperatureListener{
+public class TemperatureUI implements MaxTemperatureListener, MinTemperatureListener{
 
     TemperatureHistory temperatureHistory;
 
     public TemperatureUI() {
         this.temperatureHistory = new TemperatureHistory();
         this.temperatureHistory.addMaxTemperatureListener(this);
+        this.temperatureHistory.addMinTemperatureListener(this);
     }
 
     public static void main(String[] args) {
@@ -41,5 +42,10 @@ public class TemperatureUI implements MaxTemperatureListener{
     @Override
     public void maxTemperatureChange(MaxTemperatureEvent event) {
         System.out.println("The new max is " + event.getTemperatureHistory().highestTemperature());
+    }
+
+    @Override
+    public void minTemperatureChange(MinTemperatureEvent event) {
+        System.out.println("The new min is " + event.getTemperatureHistory().lowestTemperature());
     }
 }

@@ -5,6 +5,7 @@ import java.util.*;
 public final class TemperatureHistory {
     private final Collection<Temperature> temperatures = new ArrayList<>();
     private final List<MaxTemperatureListener> maxTemperatureListeners = new ArrayList<>();
+    private final List<MinTemperatureListener> minTemperatureListeners = new ArrayList<>();
 
     public void addMaxTemperatureListener(final MaxTemperatureListener maxTemperatureListener) {
         this.maxTemperatureListeners.add(maxTemperatureListener);
@@ -14,9 +15,23 @@ public final class TemperatureHistory {
         this.maxTemperatureListeners.remove(maxTemperatureListener);
     }
 
+    public void addMinTemperatureListener(final MinTemperatureListener minTemperatureListener) {
+        this.minTemperatureListeners.add(minTemperatureListener);
+    }
+
+    public void removeMinTemperatureListener(final MinTemperatureListener minTemperatureListener) {
+        this.minTemperatureListeners.remove(minTemperatureListener);
+    }
+
     public void fireMaxTemperatureEvent(final MaxTemperatureEvent maxTemperatureEvent) {
         for (final MaxTemperatureListener maxTemperatureListener : this.maxTemperatureListeners) {
             maxTemperatureListener.maxTemperatureChange(maxTemperatureEvent);
+        }
+    }
+
+    public void fireMinTemperatureEvent(final MinTemperatureEvent minTemperatureEvent) {
+        for (final MinTemperatureListener minTemperatureListener : this.minTemperatureListeners) {
+            minTemperatureListener.minTemperatureChange(minTemperatureEvent);
         }
     }
 
@@ -24,6 +39,9 @@ public final class TemperatureHistory {
         this.temperatures.add(temperature);
         if (this.highestTemperature().equals(temperature)) {
             this.fireMaxTemperatureEvent(new MaxTemperatureEvent(this));
+        }
+        if (this.lowestTemperature().equals(temperature)) {
+            this.fireMinTemperatureEvent(new MinTemperatureEvent(this));
         }
     }
 
