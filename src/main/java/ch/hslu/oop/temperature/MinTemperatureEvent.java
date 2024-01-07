@@ -1,7 +1,7 @@
 package ch.hslu.oop.temperature;
 
-public class MinTemperatureEvent {
-    private TemperatureHistory temperatureHistory;
+public final class MinTemperatureEvent {
+    private final TemperatureHistory temperatureHistory;
 
     public MinTemperatureEvent(TemperatureHistory temperatureHistory) {
         this.temperatureHistory = temperatureHistory;
