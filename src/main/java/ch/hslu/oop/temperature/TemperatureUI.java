@@ -21,8 +21,8 @@ public class TemperatureUI implements MaxTemperatureListener, MinTemperatureList
             input = scanner.nextLine();
             if (input.equals("exit")) break;
             try {
-                Temperature temperature = Temperature.createWithKelvin(Double.valueOf(input));
-                System.out.println(temperature.toString());
+                Temperature temperature = Temperature.createWithKelvin(Double.parseDouble(input));
+                System.out.println(temperature);
                 temperatureUI.temperatureHistory.add(temperature);
             } catch (NumberFormatException exception) {
                 System.out.println("Diese Zahl ist ungültig...");
