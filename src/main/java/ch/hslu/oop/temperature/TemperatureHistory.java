@@ -4,9 +4,27 @@ import java.util.*;
 
 public final class TemperatureHistory {
     private final Collection<Temperature> temperatures = new ArrayList<>();
+    private final List<MaxTemperatureListener> maxTemperatureListeners = new ArrayList<>();
+
+    public void addMaxTemperatureListener(final MaxTemperatureListener maxTemperatureListener) {
+        this.maxTemperatureListeners.add(maxTemperatureListener);
+    }
+
+    public void removeMaxTemperatureListener(final MaxTemperatureListener maxTemperatureListener) {
+        this.maxTemperatureListeners.remove(maxTemperatureListener);
+    }
+
+    public void fireMaxTemperatureEvent(final MaxTemperatureEvent maxTemperatureEvent) {
+        for (final MaxTemperatureListener maxTemperatureListener : this.maxTemperatureListeners) {
+            maxTemperatureListener.maxTemperatureChange(maxTemperatureEvent);
+        }
+    }
 
     public void add(Temperature temperature) {
         this.temperatures.add(temperature);
+        if (this.highestTemperature().equals(temperature)) {
+            this.fireMaxTemperatureEvent(new MaxTemperatureEvent(this));
+        }
     }
 
     public int getCount() {

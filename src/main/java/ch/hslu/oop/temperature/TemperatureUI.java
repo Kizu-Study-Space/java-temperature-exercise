@@ -2,9 +2,17 @@ package ch.hslu.oop.temperature;
 
 import java.util.Scanner;
 
-public class TemperatureUI {
+public class TemperatureUI implements MaxTemperatureListener{
+
+    TemperatureHistory temperatureHistory;
+
+    public TemperatureUI() {
+        this.temperatureHistory = new TemperatureHistory();
+        this.temperatureHistory.addMaxTemperatureListener(this);
+    }
+
     public static void main(String[] args) {
-        TemperatureHistory temperatureHistory = new TemperatureHistory();
+        TemperatureUI temperatureUI = new TemperatureUI();
         String input;
         Scanner scanner = new Scanner(System.in);
         while(true) {
@@ -14,7 +22,7 @@ public class TemperatureUI {
             try {
                 Temperature temperature = Temperature.createWithKelvin(Double.valueOf(input));
                 System.out.println(temperature.toString());
-                temperatureHistory.add(temperature);
+                temperatureUI.temperatureHistory.add(temperature);
             } catch (NumberFormatException exception) {
                 System.out.println("Diese Zahl ist ungültig...");
             }
@@ -22,11 +30,16 @@ public class TemperatureUI {
         System.out.println("================================");
         System.out.println("|| Temperatur Zusammenfassung ||");
         System.out.println("================================");
-        System.out.printf("|| Anzahl:             %d\n", temperatureHistory.getCount());
-        System.out.printf("|| Durchschnitt:       %.2fK\n", temperatureHistory.averageTemperature().getKelvin());
-        System.out.printf("|| Minimaltemperatur:  %.2fK\n", temperatureHistory.lowestTemperature().getKelvin());
-        System.out.printf("|| Maximaltemperatur:  %.2fK\n", temperatureHistory.highestTemperature().getKelvin());
+        System.out.printf("|| Anzahl:             %d\n", temperatureUI.temperatureHistory.getCount());
+        System.out.printf("|| Durchschnitt:       %.2fK\n", temperatureUI.temperatureHistory.averageTemperature().getKelvin());
+        System.out.printf("|| Minimaltemperatur:  %.2fK\n", temperatureUI.temperatureHistory.lowestTemperature().getKelvin());
+        System.out.printf("|| Maximaltemperatur:  %.2fK\n", temperatureUI.temperatureHistory.highestTemperature().getKelvin());
         System.out.println("================================");
         System.out.println("Programm beendet.");
+    }
+
+    @Override
+    public void maxTemperatureChange(MaxTemperatureEvent event) {
+        System.out.println("The new max is " + event.getTemperatureHistory().highestTemperature());
     }
 }
