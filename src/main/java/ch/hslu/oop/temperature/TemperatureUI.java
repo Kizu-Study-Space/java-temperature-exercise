@@ -28,6 +28,8 @@ public class TemperatureUI implements MaxTemperatureListener, MinTemperatureList
                 System.out.println("Diese Zahl ist ungültig...");
             }
         }
+        temperatureUI.temperatureHistory.removeMaxTemperatureListener(temperatureUI);
+        temperatureUI.temperatureHistory.removeMinTemperatureListener(temperatureUI);
         System.out.println("================================");
         System.out.println("|| Temperatur Zusammenfassung ||");
         System.out.println("================================");
