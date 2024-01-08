@@ -5,9 +5,17 @@ import java.util.Scanner;
 public class TemperatureUI implements MaxTemperatureListener, MinTemperatureListener{
 
     TemperatureHistory temperatureHistory;
+    TemperatureStorage temperatureStorage;
 
     public TemperatureUI() {
+        this.temperatureStorage = new TemperatureStorage("./miau");
         this.temperatureHistory = new TemperatureHistory();
+
+        double[] temperatures = temperatureStorage.readTemperatures();
+        for( double temperature : temperatures) {
+            temperatureHistory.add(Temperature.createWithKelvin(temperature));
+        }
+
         this.temperatureHistory.addMaxTemperatureListener(this);
         this.temperatureHistory.addMinTemperatureListener(this);
     }
@@ -30,6 +38,9 @@ public class TemperatureUI implements MaxTemperatureListener, MinTemperatureList
         }
         temperatureUI.temperatureHistory.removeMaxTemperatureListener(temperatureUI);
         temperatureUI.temperatureHistory.removeMinTemperatureListener(temperatureUI);
+
+        temperatureUI.temperatureStorage.storeTemperatures(temperatureUI.temperatureHistory.kelvinValues());
+
         System.out.println("================================");
         System.out.println("|| Temperatur Zusammenfassung ||");
         System.out.println("================================");
