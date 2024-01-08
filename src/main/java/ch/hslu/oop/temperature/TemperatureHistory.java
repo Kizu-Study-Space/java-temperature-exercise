@@ -66,4 +66,13 @@ public final class TemperatureHistory {
     public Temperature averageTemperature() throws EmptyTemperatureHistoryException {
         return Temperature.createWithKelvin(temperatures.stream().mapToDouble(Temperature::getKelvin).average().orElseThrow(EmptyTemperatureHistoryException::new));
     }
+
+    public double[] kelvinValues() {
+        double[] kelvinArray = new double[this.getCount()];
+        for(int iterator = 0; iterator < this.getCount(); iterator++)  {
+            ArrayList<Temperature> temporary = (ArrayList<Temperature>) this.temperatures;
+            kelvinArray[iterator] = temporary.get(iterator).getKelvin();
+        }
+        return kelvinArray;
+    }
 }

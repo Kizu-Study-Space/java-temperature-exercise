@@ -5,15 +5,21 @@ import java.util.Scanner;
 public class TemperatureUI implements MaxTemperatureListener, MinTemperatureListener{
 
     TemperatureHistory temperatureHistory;
+    TemperatureStorage temperatureStorage;
 
     public TemperatureUI() {
         this.temperatureHistory = new TemperatureHistory();
         this.temperatureHistory.addMaxTemperatureListener(this);
         this.temperatureHistory.addMinTemperatureListener(this);
+        this.temperatureStorage = new TemperatureStorage("./miau");
     }
 
     public static void main(String[] args) {
         TemperatureUI temperatureUI = new TemperatureUI();
+        double[] temperatures = temperatureUI.temperatureStorage.readTemperatures();
+        for( double temperature : temperatures) {
+            temperatureUI.temperatureHistory.add(Temperature.createWithKelvin(temperature));
+        }
         String input;
         Scanner scanner = new Scanner(System.in);
         while(true) {
@@ -30,6 +36,9 @@ public class TemperatureUI implements MaxTemperatureListener, MinTemperatureList
         }
         temperatureUI.temperatureHistory.removeMaxTemperatureListener(temperatureUI);
         temperatureUI.temperatureHistory.removeMinTemperatureListener(temperatureUI);
+
+        temperatureUI.temperatureStorage.storeTemperatures(temperatureUI.temperatureHistory.kelvinValues());
+
         System.out.println("================================");
         System.out.println("|| Temperatur Zusammenfassung ||");
         System.out.println("================================");
