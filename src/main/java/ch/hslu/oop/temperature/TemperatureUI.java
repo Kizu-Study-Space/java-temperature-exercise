@@ -2,7 +2,7 @@ package ch.hslu.oop.temperature;
 
 import java.util.Scanner;
 
-public class TemperatureUI implements MaxTemperatureListener, MinTemperatureListener{
+public class TemperatureUI {
 
     TemperatureHistory temperatureHistory;
     TemperatureStorage temperatureStorage;
@@ -16,8 +16,8 @@ public class TemperatureUI implements MaxTemperatureListener, MinTemperatureList
             temperatureHistory.add(Temperature.createWithKelvin(temperature));
         }
 
-        this.temperatureHistory.addMaxTemperatureListener(this);
-        this.temperatureHistory.addMinTemperatureListener(this);
+        this.temperatureHistory.addMaxTemperatureListener(this::maxTemperatureChange);
+        this.temperatureHistory.addMinTemperatureListener(this::minTemperatureChange);
     }
 
     public static void main(String[] args) {
@@ -36,8 +36,8 @@ public class TemperatureUI implements MaxTemperatureListener, MinTemperatureList
                 System.out.println("Diese Zahl ist ungültig...");
             }
         }
-        temperatureUI.temperatureHistory.removeMaxTemperatureListener(temperatureUI);
-        temperatureUI.temperatureHistory.removeMinTemperatureListener(temperatureUI);
+        temperatureUI.temperatureHistory.removeMaxTemperatureListener(temperatureUI::maxTemperatureChange);
+        temperatureUI.temperatureHistory.removeMinTemperatureListener(temperatureUI::minTemperatureChange);
 
         temperatureUI.temperatureStorage.storeTemperatures(temperatureUI.temperatureHistory.kelvinValues());
 
@@ -52,12 +52,10 @@ public class TemperatureUI implements MaxTemperatureListener, MinTemperatureList
         System.out.println("Programm beendet.");
     }
 
-    @Override
     public void maxTemperatureChange(MaxTemperatureEvent event) {
         System.out.println("The new max is " + event.getTemperatureHistory().highestTemperature());
     }
 
-    @Override
     public void minTemperatureChange(MinTemperatureEvent event) {
         System.out.println("The new min is " + event.getTemperatureHistory().lowestTemperature());
     }
